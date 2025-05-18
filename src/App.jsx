@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BuilderProvider } from "./store/builderStore";
+import Canvas from "./components/Canvas";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import PropertyEditor from "./components/PropertyEditor";
+import Sidebar from "./components/Sidebar";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <BuilderProvider>
+      <DndProvider backend={HTML5Backend}>
+        <div className="flex h-screen bg-gray-100">
+          <div className="w-64 border-r bg-white p-4">
+            <Sidebar />
+          </div>
 
-export default App
+          <div className="flex-1 relative overflow-auto">
+            <Canvas />
+          </div>
+
+          <div className="w-64 border-l bg-white p-4">
+            <PropertyEditor />
+          </div>
+        </div>
+      </DndProvider>
+    </BuilderProvider>
+  );
+};
+
+export default App;
