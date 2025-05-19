@@ -7,23 +7,33 @@ import PropertyEditor from "./components/PropertyEditor";
 import Sidebar from "./components/Sidebar";
 
 const App = () => {
+  // return (
+  //   <BuilderProvider>
+  //     <DndProvider backend={HTML5Backend}>
+  //       <div className="flex h-screen bg-gray-100">
+  //         <div className="w-64 border-r bg-white p-4">
+  //           <Sidebar />
+  //         </div>
+
+  //         <div className="flex-1 relative overflow-auto">
+  //           <Canvas />
+  //         </div>
+
+  //         <div className="w-64 border-l bg-white p-4">
+  //           <PropertyEditor />
+  //         </div>
+  //       </div>
+  //     </DndProvider>
+  //   </BuilderProvider>
+  // );
+
   return (
     <BuilderProvider>
-      <DndProvider backend={HTML5Backend}>
-        <div className="flex h-screen bg-gray-100">
-          <div className="w-64 border-r bg-white p-4">
-            <Sidebar />
-          </div>
-
-          <div className="flex-1 relative overflow-auto">
-            <Canvas />
-          </div>
-
-          <div className="w-64 border-l bg-white p-4">
-            <PropertyEditor />
-          </div>
-        </div>
-      </DndProvider>
+        <div className="flex h-screen">
+        <Sidebar />
+        <Canvas />
+        <PropertyEditor />
+      </div>
     </BuilderProvider>
   );
 };

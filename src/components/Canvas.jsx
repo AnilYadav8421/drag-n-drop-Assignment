@@ -17,44 +17,46 @@ const Canvas = () => {
         },
     }));
     return (
-        <div
-            ref={drop}
-            style={{
-                flex: 1,
-                border: "2px dashed #aaa",
-                position: "relative",
-                height: "100vh",
-                marginLeft: 16,
-                backgroundColor: "#fafafa",
-            }}
-        >
-            {elements.map(el => {
-                switch (el.type) {
-                    case "image":
-                        return (
-                            <EditableImage
-                                key={el.id}
-                                el={el}
-                                selectedId={selectedId}
-                                selectElement={selectElement}
-                                updateElement={updateElement}
-                            />
-                        );
-                    case "text":
-                    case "button":
-                    default:
-                        return (
-                            <CanvasElement
-                                key={el.id}
-                                el={el}
-                                selectedId={selectedId}
-                                selectElement={selectElement}
-                                updateElement={updateElement}
-                            />
-                        );
-                }
-            })}
+        <div className='className="flex justify-center items-center flex-1 bg-gray-100 p-8"'>
+            <div
+                ref={drop}
+                className="relative bg-white border border-gray-300 shadow-md"
+                style={{width: "800px", height: "600px" }}
+            >
+                {elements.length === 0 && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <p className="text-gray-500 text-xl">Drop here...</p>
+                    </div>
+                )}
+                {elements.map(el => {
+                    switch (el.type) {
+                        case "image":
+                            return (
+                                <EditableImage
+                                    key={el.id}
+                                    el={el}
+                                    selectedId={selectedId}
+                                    selectElement={selectElement}
+                                    updateElement={updateElement}
+                                />
+                            );
+                        case "text":
+                        case "button":
+                        default:
+                            return (
+                                <CanvasElement
+                                    key={el.id}
+                                    el={el}
+                                    selectedId={selectedId}
+                                    selectElement={selectElement}
+                                    updateElement={updateElement}
+                                />
+                            );
+                    }
+                })}
+            </div>
         </div>
+
     )
 }
 
