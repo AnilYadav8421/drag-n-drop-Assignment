@@ -8,10 +8,7 @@ export function BuilderProvider({ children }) {
   const [selectedId, setSelectedId] = useState(null);
 
   const addElement = (type, clientOffset, id) => {
-    const position = clientOffset
-      ? { x: clientOffset.x - 100, y: clientOffset.y - 50 }
-      : { x: 50, y: 50 };
-
+    const position = clientOffset;
     if (id && elements.some(el => el.id === id)) return;
 
     const newElement = {
@@ -19,10 +16,10 @@ export function BuilderProvider({ children }) {
       type,
       content: type === "text" ? "Write your name.." : "",
       style: {
-        position,
+        position: position || { x: 50, y: 50 },
         fontSize: "18px",
         color: "#000000",
-        backgroundColor: "#ffffff", // Optional
+        backgroundColor: "#ffffff",
         width: type === "image" ? 150 : undefined,
         height: type === "image" ? "auto" : undefined,
       },

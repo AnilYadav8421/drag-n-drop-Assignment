@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 
 const EditableImage = ({ el, selectedId, selectElement }) => {
     const { id, style={}, content: imageUrl } = el;

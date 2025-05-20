@@ -1,38 +1,23 @@
-import React from "react";
 import { BuilderProvider } from "./store/builderStore";
 import Canvas from "./components/Canvas";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import PropertyEditor from "./components/PropertyEditor";
 import Sidebar from "./components/Sidebar";
 
 const App = () => {
-  // return (
-  //   <BuilderProvider>
-  //     <DndProvider backend={HTML5Backend}>
-  //       <div className="flex h-screen bg-gray-100">
-  //         <div className="w-64 border-r bg-white p-4">
-  //           <Sidebar />
-  //         </div>
-
-  //         <div className="flex-1 relative overflow-auto">
-  //           <Canvas />
-  //         </div>
-
-  //         <div className="w-64 border-l bg-white p-4">
-  //           <PropertyEditor />
-  //         </div>
-  //       </div>
-  //     </DndProvider>
-  //   </BuilderProvider>
-  // );
-
   return (
     <BuilderProvider>
-        <div className="flex h-screen">
-        <Sidebar />
-        <Canvas />
-        <PropertyEditor />
+      <div className="min-h-[100vh] flex flex-col md:flex-row">
+        <div className="w-full md:w-1/5 border-r bg-gray-100">
+          <Sidebar />
+        </div>
+
+        <div className="w-full md:w-3/5">
+          <Canvas />
+        </div>
+
+        <div className="w-full md:w-1/5 border-l bg-white overflow-y-auto">
+          <PropertyEditor />
+        </div>
       </div>
     </BuilderProvider>
   );

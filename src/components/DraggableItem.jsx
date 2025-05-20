@@ -12,15 +12,9 @@ const DraggableItem = ({ type, label }) => {
     return (
         <div
             ref={drag}
-            style={{
-                opacity: isDragging ? 0.5 : 1,
-                cursor: "move",
-                padding: "8px",
-                marginBottom: "8px",
-                backgroundColor: "white",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-            }}
+            className={`w-full p-3 bg-white border rounded text-center shadow-sm cursor-move text-sm font-medium ${
+        isDragging ? "opacity-50" : ""
+            }`}
         >
             {label}
         </div>
