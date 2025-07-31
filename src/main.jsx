@@ -2,13 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import store from './store/store'
+import { Provider } from 'react-redux';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <DndProvider backend={HTML5Backend}>
+    <Provider store={store}> {/* ✅ This is essential */}
       <App />
-    </DndProvider>
+    </Provider>
   </StrictMode>,
 )
