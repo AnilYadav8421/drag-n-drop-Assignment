@@ -1,69 +1,29 @@
-import { createStore } from "redux";
-import products from './product.js'
+import { combineReducers, createStore } from "redux";
+import { addWishListItem, removeWishListItem, wishListReducer } from "./wishListReducer.jsx";
+import { addCartItem, cartReducer, decreaseProductQuantity, increaseProductQuantity, removeCartItem } from "./cartReducer.js";
+import productReducer from "./productReducer.js";
 
-const initialState = {
-    product: products,
-    cartItems: [],
-    wishList: []
-}
+// to use all reducer at single place
+const reducer = combineReducers({
+    // it take data like key: value pair
+    products: productReducer,
+    wishList: wishListReducer,
+    cartItems: cartReducer
+})
 
-function reducer(state = initialState, action) {
-    // console.log(action);
-    switch (action.type) {
-        case 'add/cartItem':
-            return { ...state, cartItems: [...state.cartItems, action.payload] }
-
-        case 'remove/cartItem':
-            return { 
-                ...state, 
-                cartItems: state.cartItems.filter((cartItems) => cartItems.productId !== action.payload.productId) }
-
-        case 'increase/itemsQuantity':
-            return {
-                ...state,
-                cartItems: state.cartItems.map((item) => {
-                    if (item.productId === action.payload.productId) {
-                        return { ...item, quantity: item.quantity + 1 };
-                    }
-                    return item
-                })
-            }
-
-        case 'decrease/itemsQuantity':
-            return {
-                ...state,
-                cartItems: state.cartItems.map((item) =>
-                    item.productId === action.payload.productId && item.quantity > 1
-                        ? { ...item, quantity: item.quantity - 1 }
-                        : item
-                )
-            };
-
-        case 'add/wishListItem':
-            return {
-                ...state, wishList: [state.wishList, action.payload]
-            }
-
-        case 'remove/wishListItem':
-            return {
-                ...state, wishList: state.wishList.filter((cartItems) => cartItems.productId !== action.payload.productId)
-            }
-        default: return state;
-    }
-}
 
 const store = createStore(reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-store.dispatch({ type: 'add/cartItem', payload: { productId: 1, quantity: 1 } })
-store.dispatch({ type: 'add/cartItem', payload: { productId: 12, quantity: 1 } })
-store.dispatch({ type: 'remove/cartItem', payload: { productId: 12 } })
-store.dispatch({ type: 'increase/itemsQuantity', payload: { productId: 12, } })
-store.dispatch({ type: 'decrease/itemsQuantity', payload: { productId: 12 } })
-store.dispatch({ type: 'add/wishListItem', payload: { productId: 4 } })
-store.dispatch({ type: 'add/wishListItem', payload: { productId: 6 } })
-store.dispatch({ type: 'remove/wishListItem', payload: { productId: 6 } })
+store.dispatch(addCartItem(2))
+store.dispatch(addCartItem(3))
+store.dispatch(removeCartItem(3))
+store.dispatch(increaseProductQuantity(2, 3))
+store.dispatch(decreaseProductQuantity(2))
+
+store.dispatch(addWishListItem(6))
+store.dispatch(removeWishListItem(6))
 
 console.log(store.getState());
 
