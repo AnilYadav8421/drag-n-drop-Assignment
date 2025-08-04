@@ -12,7 +12,7 @@ const reducer = combineReducers({
 })
 
 
-const store = createStore(reducer,
+export const store = createStore(reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
@@ -25,7 +25,7 @@ store.dispatch(decreaseProductQuantity(2))
 store.dispatch(addWishListItem(6))
 store.dispatch(removeWishListItem(6))
 
-console.log(store.getState());
+// console.log(store.getState());
 
 
 export default store;
