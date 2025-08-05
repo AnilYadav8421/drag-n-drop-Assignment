@@ -7,10 +7,10 @@ export function removeCartItem(id) {
 }
 
 export function increaseProductQuantity(id, quantity) {
-    return { type: 'increase/itemsQuantity', payload: {id, quantity} }
+    return { type: 'increase/itemsQuantity', payload: { id, quantity } }
 }
 
-export function  decreaseProductQuantity(id){
+export function decreaseProductQuantity(id) {
     return { type: 'decrease/itemsQuantity', payload: { id } }
 }
 

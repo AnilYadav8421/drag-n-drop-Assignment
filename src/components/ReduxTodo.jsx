@@ -1,11 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ReduxTodo = () => {
-  
+
   // importing using useSelector hook from Redux store, instead of directly import. 
   const products = useSelector((state) => state.products)
   console.log(products);
+
+  // use this hook to dispatch hook
+  const dispatch = useDispatch();
 
   return (
     <div className="bg-gray-100 min-h-screen py-10 px-4">
@@ -40,7 +43,7 @@ const ReduxTodo = () => {
               </div>
 
               <div className="flex gap-3 mt-4">
-                <button className="flex-1 bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition">
+                <button onClick={() => dispatch()} className="flex-1 bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition">
                   Add to Cart
                 </button>
                 <button className="flex-1 border border-blue-600 text-blue-600 py-2 rounded-xl hover:bg-blue-50 transition">
